@@ -19,6 +19,16 @@
 	        {{ num }} is not divisible by 3!
 	    </li>
 	</ol>
+	<ul>
+	    <li ng-repeat="letter in ['A', 'B', 'C', 'D', 'E', 'F']">{{ letter | uppercase }}</li>
+	</ul>
+	<ul>
+	    <li ng-repeat="letter in ['A', 'B', 'C', 'D', 'E', 'F']">{{ letter | lowercase }}</li>
+	</ul>
+
+	<img ng-repeat="img in ['cats', 'sports', 'abstract']" ng-src="http://lorempixel.com/400/200/{{img}}" alt="Lorem Pixel">
+	
+
     <script type="text/javascript" src="/js/angular.min.js"></script>
     <script type="text/javascript" src="/js/templateTest.js"></script>
 </body>
