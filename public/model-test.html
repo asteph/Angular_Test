@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="templateTest">
+<head>
+    <meta charset="utf-8">
+    <title>Angular Module</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <style>
+		body{
+			width: 90%;
+			margin-right: auto;
+			margin-left: auto;
+		}
+		.ng-touched.ng-invalid{
+			
+		}
+    </style>
+</head>
+<body>
+	<h1>Model Test</h1>
+	<hr>
+    <div class="row">
+    	<div class="col-sm-offset-1 col-sm-6">
+		    <form role="form" name="userForm">
+
+		        <div class="form-group" ng-class="{'has-error': userForm.first_name.$invalid && userForm.first_name.$touched, 'has-succes': userForm.first_name.$invalid && userForm.first_name.$touched}">
+			        <label class="form-group" for="first_name">First Name</label>
+			        <input class="form-group form-control" name="first_name"type="text" id="first_name" ng-model="user.firstName" required>
+				</div>
+		        <div class="form-group" ng-class="{'has-error': userForm.last_name.$invalid && userForm.last_name.$touched, 'has-succes': userForm.last_name.$invalid && userForm.last_name.$touched}">
+			        <label class="form-group" for="last_name">Last Name</label>
+			        <input name="last_name" class="form-group form-control" type="text" id="last_name"  ng-model="user.lastName" required>
+				</div>
+		        <div class="form-group" ng-class="{'has-error': userForm.email.$invalid && userForm.email.$touched, 'has-succes': userForm.email.$invalid && userForm.email.$touched}">
+			        <label type="email" class="form-group" for="email">Email</label>
+			        <input name="email" class="form-group form-control" type="email" id="email" ng-model="user.email" required>
+				</div>
+		        <div class="form-group" ng-class="{'has-error': userForm.birthDate.$invalid && userForm.birthDate.$touched, 'has-succes': userForm.birthDate.$invalid && userForm.birthDate.$touched}">
+			        <label class="form-group" for="birthDate">Date of birth</label>
+			        <input name="birthDate" class="form-group form-control" type="birthDate" id="birthDate" ng-model="user.birthDate" required>
+				</div>
+			    <div class="form-group" ng-class="{'has-error': userForm.github.$invalid && userForm.github.$touched, 'has-succes': userForm.github.$invalid && userForm.github.$touched}">
+				    <label class="form-group" for="github">GitHub Url</label>
+			        <input name="github" class="form-group form-control" type="github" id="github" ng-model="user.github" required>
+				</div>
+
+				<label class="form-group" for="image">Image</label>
+		        <select class="form-control" id="image" ng-model="user.img">
+		          <option>Cat</option>
+		          <option>Business</option>
+		          <option>City</option>
+		        </select>
+		    </form>
+		</div>    
+		
+    	<div class="col-xs-4 well" ng-if="userForm.$valid">
+    		<div class="row">
+    			<div class="col-xs-4">
+					<img ng-if="user.img == 'Cat'" class="img-responsive" ng-src="http://lorempixel.com/200/200/cats" alt="Lorem Pixel">
+					<img ng-if="user.img == 'Business'" class="img-responsive" ng-src="http://lorempixel.com/200/200/business" alt="Lorem Pixel">
+					<img ng-if="user.img == 'City'" class="img-responsive" ng-src="http://lorempixel.com/200/200/city" alt="Lorem Pixel">
+	    		</div>
+	    		<div class="col-xs-8">
+			        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+			        <p>{{ user.email }}</p>
+			        <p>{{user.birthDate | date}}</p>
+			        <a href="{{user.github}}">Github Account</a>
+			    </div>
+    		</div>
+        </div>
+    <div>
+
+	<script type="text/javascript" src="/js/angular.min.js"></script>
+	<script type="text/javascript" src="/js/templateTest.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
