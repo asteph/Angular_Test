@@ -25,10 +25,18 @@
 			width: 100%;
 		}
 		th{
-			width: 25%;
+			width: 20%;
 		}
 		td{
-			width: 25%;
+			width: 20%;
+		}
+		p{
+			margin: 2px 0px 2px 0px;
+		}
+		.delete{
+			border: none;
+			background-color: transparent;
+			color: #DD5152;
 		}
     </style>
 </head>
@@ -37,7 +45,7 @@
 	<hr>
     <div class="row">
     	<div class="col-sm-offset-1 col-sm-4">
-		    <form role="form" name="itemForm">
+		    <form role="form" name="itemForm" ng-submit="ctrl.addItem(itemForm)">
 
 		        <div class="form-group">
 			        <label class="form-group" for="item">Item name</label>
@@ -47,12 +55,12 @@
 			        <label class="form-group" for="cost">Cost</label>
 			        <input name="cost" class="form-group form-control" type="text" id="cost"  ng-model="ctrl.newItem.price" required>
 				</div>
-				<button class="btn" ng-if="itemForm.$valid" ng-click="ctrl.addItem()">Add Item</button>
+				<button class="btn" type="submit">Add Item</button>
 		    </form>
-		    <code>
+		    <!-- <code>
 		    	{{ ctrl.newItem | json }}
 		    	{{ ctrl.items | json }}
-		    </code>
+		    </code> -->
 		</div>    
 		
     	<div class="col-sm-6 well">
@@ -63,18 +71,23 @@
 	        		<th>Quantity</th> 
 	        		<th>Price</th>
 	        		<th>Total</th>
+	        		<th>Remove</th>
 	        	</tr>
 				<tr ng-repeat="item in ctrl.items">
 	        		<td>{{ item.name }}</td>
 	        		<td>
-	        			<input type="text" ng-model="item.quantity" style="background-color: transparent; border: none">
+	        			<input type="text" ng-model="item.quantity" style="background-color: transparent; border: none; width: 20px">
         			</td>
 	        		<td>{{ item.price | currency}}</td>
-	        		<td>{{ item.quantity * item.price | currency}}</td>
+	        		<td>{{ item.quantity * item.price | currency }}</td>
+	        		<td><button class="delete" ng-click="ctrl.deleteItem($index)"><span class="glyphicon glyphicon-remove"></span></button></td> 
 	        	</tr>
 	        </table>
 	        <br>
-        	<strong>SubTotal:</strong>
+        	<p><strong>SubTotal: </strong>{{ ctrl.subTotal() | currency }}</p>
+        	<p><strong>Tax: </strong>{{ ctrl.subTotal() * .08125 | currency }}</p>
+        	<p><strong>Shipping: </strong>{{ ctrl.shipping() | currency }}</p>
+        	<p><strong>Total: </strong>{{ ctrl.subTotal() * 1.0825 + ctrl.shipping() | currency }}</p>
         </div>
     <div>
 

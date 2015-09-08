@@ -33,7 +33,25 @@
         	this.items.push(this.newItem);
         	this.newItem = {
         		quantity:1
+        	};	
+        };
+        this.deleteItem = function($index){
+        	this.items.splice($index, 1);
+  			console.log($index);
+        };
+        this.subTotal = function(){
+        	var subTotal = 0;
+        	for(var i = 0 ; i < this.items.length; i++){
+        		subTotal += this.items[i].price * this.items[i].quantity;
         	};
-        }
+        	return subTotal;
+        };
+        this.shipping = function(){
+        	var shipping = 0;
+        	for(var i = 0 ; i < this.items.length; i++){
+        		shipping += this.items[i].quantity * 1.25;
+        	};
+        	return shipping;
+        };
     });
 })();
