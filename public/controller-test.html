@@ -36,23 +36,27 @@
 	<h1>Shopping Cart</h1>
 	<hr>
     <div class="row">
-    	<div class="col-sm-offset-1 col-sm-6">
-		    <form role="form" name="userForm">
+    	<div class="col-sm-offset-1 col-sm-4">
+		    <form role="form" name="itemForm">
 
 		        <div class="form-group">
 			        <label class="form-group" for="item">Item name</label>
-			        <input class="form-group form-control" name="item"type="text" id="item" ng-model="item" required>
+			        <input class="form-group form-control" name="item"type="text" id="item" ng-model="ctrl.newItem.name" required>
 				</div>
 		        <div class="form-group">
 			        <label class="form-group" for="cost">Cost</label>
-			        <input name="cost" class="form-group form-control" type="text" id="cost"  ng-model="cost" required>
+			        <input name="cost" class="form-group form-control" type="text" id="cost"  ng-model="ctrl.newItem.price" required>
 				</div>
-				<button class="btn" ng-click="ctrl.addItem()">Add Item</button>
+				<button class="btn" ng-if="itemForm.$valid" ng-click="ctrl.addItem()">Add Item</button>
 		    </form>
+		    <code>
+		    	{{ ctrl.newItem | json }}
+		    	{{ ctrl.items | json }}
+		    </code>
 		</div>    
 		
-    	<div class="col-sm-4 well">
-			<h3>Cart</h3>
+    	<div class="col-sm-6 well">
+			<h3>Cart Items</h3>
 	        <table>
 	        	<tr>
 	        		<th>Name</th>
@@ -62,7 +66,7 @@
 	        	</tr>
 				<tr ng-repeat="item in ctrl.items">
 	        		<td>{{ item.name }}</td>
-	        		<td>{{ item.quantity }}</td>
+	        		<td>{{ item.quantity | number}}</td>
 	        		<td>{{ item.price | currency}}</td>
 	        		<td>{{ item.quantity * item.price | currency}}</td>
 	        	</tr>
