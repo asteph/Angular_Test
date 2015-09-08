@@ -66,11 +66,15 @@
 	        	</tr>
 				<tr ng-repeat="item in ctrl.items">
 	        		<td>{{ item.name }}</td>
-	        		<td>{{ item.quantity | number}}</td>
+	        		<td>
+	        			<input type="text" ng-model="item.quantity" style="background-color: transparent; border: none">
+        			</td>
 	        		<td>{{ item.price | currency}}</td>
 	        		<td>{{ item.quantity * item.price | currency}}</td>
 	        	</tr>
 	        </table>
+	        <br>
+        	<strong>SubTotal:</strong>
         </div>
     <div>
 
