@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="controllerTest">
+<head>
+    <meta charset="utf-8">
+    <title>Angular Controller</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <style>
+		body{
+			width: 90%;
+			margin-right: auto;
+			margin-left: auto;
+		}
+		.well{
+			margin-top: 10px;
+		}
+		h3{
+			margin-top: 0px;
+		}
+		table{
+			width: 100%;
+		}
+		th{
+			width: 25%;
+		}
+		td{
+			width: 25%;
+		}
+    </style>
+</head>
+<body ng-controller="CartController as ctrl">
+	<h1>Shopping Cart</h1>
+	<hr>
+    <div class="row">
+    	<div class="col-sm-offset-1 col-sm-6">
+		    <form role="form" name="userForm">
+
+		        <div class="form-group">
+			        <label class="form-group" for="item">Item name</label>
+			        <input class="form-group form-control" name="item"type="text" id="item" ng-model="item" required>
+				</div>
+		        <div class="form-group">
+			        <label class="form-group" for="cost">Cost</label>
+			        <input name="cost" class="form-group form-control" type="text" id="cost"  ng-model="cost" required>
+				</div>
+				<button class="btn" ng-click="ctrl.addItem()">Add Item</button>
+		    </form>
+		</div>    
+		
+    	<div class="col-sm-4 well">
+			<h3>Cart</h3>
+	        <table>
+	        	<tr>
+	        		<th>Name</th>
+	        		<th>Quantity</th> 
+	        		<th>Price</th>
+	        		<th>Total</th>
+	        	</tr>
+				<tr ng-repeat="item in ctrl.items">
+	        		<td>{{ item.name }}</td>
+	        		<td>{{ item.quantity }}</td>
+	        		<td>{{ item.price | currency}}</td>
+	        		<td>{{ item.quantity * item.price | currency}}</td>
+	        	</tr>
+	        </table>
+        </div>
+    <div>
+
+	<script type="text/javascript" src="/js/angular.min.js"></script>
+	<script type="text/javascript" src="/js/controllerTest.js"></script>
+    <script src="/js/jquery.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
